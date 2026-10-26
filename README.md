@@ -1,8 +1,9 @@
 # LAUNCHPAD
 
 One window for everything you reach for: apps, games, folders, files, links,
-multi-step actions (like turning on your VPN) and project notes. Black and white,
-with swappable ASCII art (Sisyphus by default) at the top of the home screen.
+multi-step actions (like turning on your VPN), tasks, projects, a calendar and
+daily goals. Black and white by default (or any colours you like), with swappable
+ASCII art (Sisyphus by default) at the top of the home screen.
 
 ## Install (Windows 11)
 
@@ -11,8 +12,9 @@ with swappable ASCII art (Sisyphus by default) at the top of the home screen.
    The desktop shortcut and startup entry point here, so don't run it from Downloads.
 3. Double-click **install.bat**.
 
-It installs PySide6, opens Launchpad, puts a shortcut on your desktop and sets
-Launchpad to start with Windows (hidden in the tray) so the hotkey always works.
+It installs PySide6 (plus the optional song-info support for the media controls),
+opens Launchpad, puts a shortcut on your desktop and sets Launchpad to start with
+Windows (hidden in the tray) so the hotkey always works.
 
 Optional: **build_exe.bat** makes a standalone `dist\Launchpad.exe` that doesn't
 need Python.
@@ -29,9 +31,8 @@ need Python.
 | Keep something at the very top | Right-click → **Pin to top**, or drag it into **PINNED** |
 | Collapse a section | Click its header (`[-]` / `[+]`) |
 | Edit, pin to a project, remove | Right-click any tile |
-| Projects | **Ctrl+P**, or the PROJECTS section on the home screen |
-| To-do list | **Ctrl+T** |
-| Calendar | **Ctrl+K** |
+| Workbench tabs | **Ctrl+T** tasks · **Ctrl+P** projects · **Ctrl+K** calendar · **Ctrl+G** goals |
+| Settings | the gear at the bottom of the sidebar, or **Ctrl+,** |
 
 **What you can drop in:** programs (.exe), shortcuts (.lnk), folders, any file,
 links dragged from your browser's address bar, and Steam game shortcuts.
@@ -49,18 +50,20 @@ strikethrough and a `?`. Right-click → Edit to point it at the new location.
   GAMES. That keeps the launch arguments, e.g. Riot's
   `RiotClientServices.exe --launch-product=valorant --launch-patchline=live`.
 
-## VPN action (Surfshark)
+## Sidebar
 
-Surfshark on Windows can't be switched on by another program, so the VPN action
-opens Surfshark. To make that one click:
+Below the sections: **media controls** (previous / play-pause / next, plus song
+and artist; this works with Spotify, YouTube in a browser, Apple Music and
+anything else in Windows' volume flyout), a **clock** with the day and date, **+ ADD**
+and the **settings gear**. The sidebar clock hides while the home screen is
+showing the Clock art, so you don't get two clocks.
 
-1. In Surfshark's settings, turn on its **auto-connect** option.
-2. In Launchpad, the action **VPN ON (Surfshark)** is created automatically on
-   first run if Surfshark is installed. You can also build your own under ACTIONS
-   with the **+ SURFSHARK VPN STEP** button.
+Song names need a one-off install (done by `install.bat`, or **Settings → Media →
+TURN ON SONG INFO**). Without it the buttons still work as media keys.
 
-Actions can chain steps, for example: open Surfshark → wait 5 s → open a folder →
-open a website.
+## Workbench
+
+Tasks, Projects, Calendar and Goals live together under **WORKBENCH**, one tab each.
 
 ## Projects
 
@@ -72,7 +75,7 @@ drag to reorder, Delete to remove) and a **PINNED** list of files, folders and
 links (click to open, drag to reorder, right-click to edit or remove). Drop
 anything onto a project page to pin it.
 
-## To-do
+## Tasks
 
 Each task has an **urgency meter**: 5 boxes, click box 1 (least) to 5 (most).
 You can also set an optional **do-by date** (TODAY / TOMORROW / +1 WEEK buttons
@@ -90,12 +93,37 @@ that day; double-click a day to start typing a reminder. Reminders can have an
 optional time (`14:30`). To-dos with a do-by date appear on their day
 automatically, and you can add a to-do due on the selected day from the side panel.
 
+## Daily goals
+
+**GOALS → + NEW GOAL**: pick a template (water, push-ups, calories, steps…) or
+start from scratch. Set a daily target and a unit, and choose whether to **reach it**
+or **stay under it** (good for calories or coffee).
+
+- **Quick-add buttons** add a percentage of the target (10%, 25%, 50% by
+  default; change them per goal). The button shows the actual amount, e.g. `+500 ml`.
+- **Type an amount** and press Enter for anything else. A minus number takes some away.
+  **UNDO** removes the last entry.
+- Click the big number to set today's total directly.
+- Each card shows the **last 7 days** (`#` hit, `+` some, `x` over the limit,
+  `.` nothing) and your **streak**.
+- Counts reset at midnight. Goals you don't use often can go in the **archive**
+  (`...` → Archive) and come back any time.
+- **TODAY'S GOALS** on the home screen shows a compact bar for each goal. Click
+  one to log without leaving home.
+
+## Themes
+
+**Settings → Theme**: Mono, Paper (light), Amber terminal, Green phosphor, Deep
+ocean, Dusk or Slate. Or click BACKGROUND / TEXT / ACCENT to pick any colour. The
+ASCII art follows the text colour; the accent is used for highlights and borders.
+
 ## ASCII art
 
 Use the **ART ▾** button on the art itself to:
 
-- pick the art: Sisyphus, Sisyphus (compact strip), LAUNCHPAD title, Clock,
-  Campsite, Old man fishing, Rotating globe, Saturn, Storm
+- pick the art: Sisyphus, LAUNCHPAD title, Clock, Old man fishing, Rain on
+  water, Paper planes, Underwater, Rotating globe, Saturn, Storm. Older ones
+  (compact Sisyphus, Campsite, Rocket) are under **Deprecated**.
 - pick a different art for when the window isn't maximised
 - set the size: Small, Medium or Large share of the window height. Every art
   scales to fit that space, so swapping art never moves anything else.
@@ -105,7 +133,7 @@ Use the **ART ▾** button on the art itself to:
 
 **ART ▾ → Open custom art folder** opens `%APPDATA%\Launchpad\art`. Any `.txt`
 file in there appears in the art list (use **Reload custom art** after adding one).
-There's an `example-rocket.txt` to copy.
+There's an `_example.txt` to copy (files starting with `_` aren't listed).
 
 - One frame = plain ASCII art. For animation, put a line reading `---frame---`
   between frames.
@@ -117,9 +145,19 @@ Everything (items, pins, projects, to-dos, reminders, settings, custom art) is s
 `%APPDATA%\Launchpad\`, not in this folder, with a backup copy
 `launchpad.json.bak` made at every start.
 
-**To update:** quit Launchpad (tray icon → Quit), unzip the new version over this
-folder, and start it again. Nothing needs re-adding. Export/Import backup in
-Settings is for moving to another PC or keeping an extra copy.
+**Updates:** Launchpad checks GitHub for a new release when it starts and shows a
+bar at the top when one is out: **WHAT'S NEW**, **UPDATE NOW** (downloads,
+installs and restarts), **LATER** or **SKIP THIS VERSION**. **Settings → Updates
+→ CHECK NOW** checks straight away. The previous version is kept in
+`%APPDATA%\Launchpad\backups`.
+
+Updating by hand also works: unzip the new version over this folder and open it.
+A newer copy automatically takes over from an older one still running in the tray.
+
+Export/Import backup in Settings is for moving to another PC or keeping an extra copy.
+
+See `CHANGELOG.md` for what changed in each version, and `RELEASING.md` for how to
+publish an update.
 
 ## Files
 
@@ -127,3 +165,5 @@ Settings is for moving to another PC or keeping an extra copy.
 - `launchpad.ico`: icon
 - `install.bat`: setup
 - `build_exe.bat`: optional standalone .exe build
+- `CHANGELOG.md`: what changed in each version
+- `RELEASING.md`: how to publish an update on GitHub
